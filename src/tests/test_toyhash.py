@@ -55,5 +55,5 @@ def test_avalanche_vs_sha():
 
 
 def test_backward_compatibility():
-    th = ToyHash(b'toyhash', bit_length=256, algorythm_version=1)
+    th = ToyHash(b'toyhash', bit_length=256, algorithm_version=1)
     assert th.hexdigest() == '81b9d20fb1ec32dbe0ca802a1f6d7aeff8099608244424e215e6bf309ee7c239'
