@@ -8,9 +8,11 @@ Remember the rule
 and don't use it in any real project please.
 '''
 
+from copy import deepcopy
+
 
 ALGORITHM_VERSION = 1
-VERSION = (ALGORITHM_VERSION, 0, 0)
+VERSION = (ALGORITHM_VERSION, 0, 1)
 
 
 class ToyHash:
@@ -23,12 +25,17 @@ class ToyHash:
                 raise ValueError('bit_length must be positive integer multiple of 8')
             self.digest_size = bit_length // 8
             self._bit_length = bit_length
+            self._initials = initials
             self._get_implementation(algorithm_version, initials=initials or {})
             self.update(data)
         elif isinstance(data, self.__class__):
             # `self` should be copy of another instance
-            for attr in self.__slots__:
-                setattr(self, attr, getattr(data, '_buffer'))
+            for attr_name in self.__slots__:
+                attr = getattr(data, attr_name)
+                if attr_name == '_implementation':
+                    setattr(self, attr_name, deepcopy(attr))
+                else:
+                    setattr(self, attr_name, attr)
         elif isinstance(data, str):
             raise TypeError("Unicode-objects must be encoded before hashing")
         else:
