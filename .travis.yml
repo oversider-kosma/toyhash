@@ -1,8 +1,9 @@
+dist: trusty
+sudo: required
 language: python
 python:
   - "3.5"
   - "3.6"
   - "pypy3.5"
-  - "pypy3.6"
 script:
   - pytest
