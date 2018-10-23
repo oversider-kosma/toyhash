@@ -22,7 +22,7 @@ def bytes_bin_str_repr(data):
 
 
 def change_one_bit(data):
-    '''Inverts one pseudo-random bit in bytes array'''
+    '''Inverts one pseudo-random bit in given bytes object'''
     byte_no = data[0] % len(data)  # choose some "pseudo-random" byte
     byte = data[byte_no]
     bit_no = sum(data) % 8   # choose some "pseudo-random" bit
