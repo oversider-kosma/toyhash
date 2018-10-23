@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/oversider-kosma/toyhash.svg?branch=master)](https://travis-ci.org/oversider-kosma/toyhash)
+
 # toyhash
 
 Some simple hash function implementation with API similar to the real ones.
