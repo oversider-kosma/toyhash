@@ -2,7 +2,7 @@
 # pylint: disable=C0111
 from hashlib import sha512
 
-from toyhash import toyhash64, toyhash256, toyhash512  # pylint: disable=E0611
+from toyhash import toyhash64, toyhash128, toyhash256, toyhash512  # pylint: disable=E0611
 from toyhash.core import ToyHash
 
 from tests.utils import bytes_bin_str_repr, change_one_bit
@@ -57,3 +57,11 @@ def test_avalanche_vs_sha():
 def test_backward_compatibility():
     th = ToyHash(b'toyhash', bit_length=256, algorithm_version=1)
     assert th.hexdigest() == '81b9d20fb1ec32dbe0ca802a1f6d7aeff8099608244424e215e6bf309ee7c239'
+
+def test_copy():
+    hash1 = toyhash128(b'lasto beth lammen')
+    hash2 = hash1.copy()
+
+    assert hash1 is not hash2
+    assert hash1._implementation is not hash2._implementation  # pylint: disable=W0212
+    assert hash1.digest() == hash2.digest()
