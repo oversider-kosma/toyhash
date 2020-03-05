@@ -1,8 +1,13 @@
-dist: trusty
-sudo: required
 language: python
 python:
   - "3.5"
+  - "3.6"
+  - "3.7"
+  - "3.8"
   - "pypy3.5"
-script:
-  - pytest
+  - "pypy3"
+before_install:
+  - python --version
+  - pip install -U pip
+  - pip install -U pytest
+script: pytest
